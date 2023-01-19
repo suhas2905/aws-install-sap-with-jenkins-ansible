@@ -13,3 +13,11 @@ fi
 
 echo "$AMI_ID"
 exit 0
+
+if [ -z "$AMI_ID_DR" ]; then
+    echo "Invalid AMI ID_DR. Check your AMI Id of DR on AWS Marketplace > RHEL 8.2"
+    exit 100
+fi
+
+echo "$AMI_ID_DR"
+exit 0
