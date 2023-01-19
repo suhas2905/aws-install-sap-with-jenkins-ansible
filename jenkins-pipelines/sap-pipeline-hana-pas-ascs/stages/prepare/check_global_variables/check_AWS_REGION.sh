@@ -13,3 +13,11 @@ fi
 
 echo "$AWS_REGION"
 exit 0
+
+if [ -z "$AWS_REGION_DR" ]; then
+    echo "us-east-2"
+    exit 0
+fi
+
+echo "$AWS_REGION_DR"
+exit 0
