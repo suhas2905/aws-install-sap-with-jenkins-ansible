@@ -24,7 +24,9 @@ terraform -chdir="$PWD/$TERRAFORM_FOLDER_NAME" \
                 -var "aws_access_key=$AWS_ACCOUNT_CREDENTIALS_USR" \
                 -var "aws_secret_key=$AWS_ACCOUNT_CREDENTIALS_PSW" \
                 -var "aws_region=$AWS_REGION_CHKD" \
+                -var "aws_region_dr=$AWS_REGION_DR_CHKD" \
                 -var "ssh_key=$SSH_KEYPAIR_NAME_CHKD" \
+                -var "ssh_key_dr=$SSH_KEYPAIR_NAME_DR_CHKD" \
                 -var "ascs_instance_type=$ASCS_INSTANCE_TYPE_CHKD" \
                 -var "as_instance_type=$PAS_INSTANCE_TYPE_CHKD" \
                 -var "hana_instance_type=$HANA_INSTANCE_TYPE_CHKD" \
@@ -38,7 +40,9 @@ terraform -chdir="$PWD/$TERRAFORM_FOLDER_NAME" \
                 -var "customer_default_sg_id=$SECURITY_GROUP_ID_CHKD" \
                 -var "enable_ha=$ENABLE_HA_CHKD" \
                 -var "ami_id=$AMI_ID_CHKD" \
+                -var "ami_id_dr=$AMI_ID_DR_CHKD" \
                 -var "kms_key_arn=$KMS_KEY_ARN" \
+                -var "kms_key_arn_dr=$KMS_KEY_ARN_DR" \
                 -lock-timeout=10m
 
 if [ $? -gt 0 ]; then
