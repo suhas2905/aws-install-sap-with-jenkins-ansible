@@ -39,6 +39,7 @@ terraform -chdir="$PWD/$TERRAFORM_FOLDER_NAME" \
                 -var "customer_default_sg_id=$SECURITY_GROUP_ID_CHKD" \
                 -var "enable_ha=$ENABLE_HA_CHKD" \
                 -var "ami_id=$AMI_ID_CHKD" \
+                -var "ami_id_dr=$AMI_ID_DR_CHKD" \
                 -var "kms_key_arn=$KMS_KEY_ARN" \
                 -var "kms_key_arn-dr=$KMS_KEY_ARN_DR" \
                 -out "tfout.log" \
