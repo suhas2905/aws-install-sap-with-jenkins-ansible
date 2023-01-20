@@ -183,7 +183,21 @@ pipeline {
                 }
             }
         }
-        stage('Install HANA, ASCS and ERS'){
+        stage('Install HANA in DR'){
+           options {timeout(time: 2, unit: 'HOURS')}
+             steps {
+                script {
+                    // Ansible for installing ASCS
+                    sh '''
+                        $STAGES_FOLDER/install_sap/install_hana_dr.sh
+                        if [ $? -gt 0 ]; then
+                            exit 1
+                         fi 
+                    '''
+                        }
+                 }
+          }
+         stage('Install HANA, ASCS and ERS'){
             options {timeout(time: 2, unit: 'HOURS')}
             parallel {
                 stage('Install HANA'){
