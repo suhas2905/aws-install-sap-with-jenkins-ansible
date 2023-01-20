@@ -32,10 +32,6 @@ export HOSTS_IPS_DR=$hana_dr_private_ips
         echo "No ID for the overlay IP route table was found for Hana. Please check Terraform step"
         exit 105
     fi
-fi
-
-
-
 
 # ------------------------------------------------------------------
 # Create hosts file
