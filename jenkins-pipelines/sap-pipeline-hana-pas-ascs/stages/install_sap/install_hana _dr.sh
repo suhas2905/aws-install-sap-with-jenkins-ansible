@@ -19,7 +19,7 @@ if [ -z "$hana_dr_private_ips" ]; then
     echo "No Hana instance IPs were found. Please check Terraform step"
    exit 100
 fi
-export HOSTS_IPS=$hana_dr_private_ips
+export HOSTS_IPS_DR=$hana_dr_private_ips
 
     hana_dr_overlay_ip=$(terraform -chdir="$PWD/$TERRAFORM_FOLDER_NAME" output -json hana_instance_dr_overlay_ip)
     if [ -z "$hana_dr_overlay_ip" ]; then
@@ -35,30 +35,14 @@ export HOSTS_IPS=$hana_dr_private_ips
 fi
 
 
-ascs_private_ip=$(terraform -chdir="$PWD/$TERRAFORM_FOLDER_NAME" output -json ascs_instance_private_ip | jq -r '.[0]')
-if [ -z "$ascs_private_ip" ]; then
-    echo "No ASCS instance private IP was found. Please check Terraform step"
-    exit 101
-fi
 
-pas_private_ip=$(terraform -chdir="$PWD/$TERRAFORM_FOLDER_NAME" output -json app_instance_private_ip | jq -r '.[0]')
-if [ -z "$pas_private_ip" ]; then
-    echo "No PAS instance private IP was found. Please check Terraform step"
-    exit 102
-fi
-
-efs_id=$(terraform -chdir="$PWD/$TERRAFORM_FOLDER_NAME" output -raw app_instance_efs_ids)
-if [ -z "$efs_id" ]; then
-    echo "No EFS ID was found. Please check Terraform step"
-    exit 103
-fi
 
 # ------------------------------------------------------------------
 # Create hosts file
 # ------------------------------------------------------------------
 # Create hosts_runtime.yml file
 FOLDER_PATH="./jenkins-pipelines/sap-pipeline-hana-pas-ascs/stages/install_sap"
-$FOLDER_PATH/create_hosts_file.sh
+$FOLDER_PATH/create_hosts_file_dr.sh
 if [ $? -ne 0 ]; then
     echo "There was an error creating the hosts file. Please check again"
     exit 104
@@ -79,14 +63,7 @@ echo "PRIVATE_DNS_ZONE: $PRIVATE_DNS_ZONE_NAME_CHKD" >> $VAR_FILE_FULL_PATH
 echo "MASTER_PASSWORD: $MASTER_PASSWORD_CHKD" >> $VAR_FILE_FULL_PATH
 echo "HANA_SID: $HANA_SID_CHKD" >> $VAR_FILE_FULL_PATH
 echo "HANA_INSTANCE_NUMBER: \"$HANA_INSTANCE_NUMBER_CHKD\"" >> $VAR_FILE_FULL_PATH
-echo "EFS_ID: $efs_id" >> $VAR_FILE_FULL_PATH
 echo "S3_BUCKET_MEDIA_FILES: $S3_ROOT_FOLDER_INSTALL_FILES_CHKD" >> $VAR_FILE_FULL_PATH
-echo "ASCS_PRIVATE_IP: $ascs_private_ip" >> $VAR_FILE_FULL_PATH
-echo "ASCS_HOSTNAME: $ASCS_INSTANCES_NAME_CHKD" >> $VAR_FILE_FULL_PATH
-echo "PAS_PRIVATE_IP: $pas_private_ip" >> $VAR_FILE_FULL_PATH
-echo "PAS_HOSTNAME: $PAS_INSTANCES_NAME_CHKD" >> $VAR_FILE_FULL_PATH
-echo "PAS_SID: $SAP_SID_CHKD" >> $VAR_FILE_FULL_PATH
-echo "ENABLE_HA: $ENABLE_HA_CHKD" >> $VAR_FILE_FULL_PATH
 echo "AWS_CLI_PROFILE: $CLI_PROFILE_CHKD" >> $VAR_FILE_FULL_PATH
 echo "BUCKET_TO_BACKUP: $BUCKET_NAME_CHKD" >> $VAR_FILE_FULL_PATH
 echo "AWS_REGION_DR: $AWS_REGION_DR_CHKD" >> $VAR_FILE_FULL_PATH
@@ -96,13 +73,7 @@ echo "OVERLAY_IP_ROUTE_TABLE_ID: $hana_dr_overlay_route_table_id" >> $VAR_FILE_F
 # ------------------------------------------------------------------
 # Parse private IPs for HA
 # ------------------------------------------------------------------
-if [[ "$ENABLE_HA_CHKD" == "true" ]]; then
-    $FOLDER_PATH/create_ha_vars.sh
-    if [ $? -ne 0 ]; then
-        echo "There was an error creating the hosts file. Please check again"
-        exit 104
-    fi
-fi
+
 
 # ------------------------------------------------------------------
 # Run playbook
