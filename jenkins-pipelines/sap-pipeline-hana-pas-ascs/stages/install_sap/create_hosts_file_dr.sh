@@ -11,17 +11,17 @@ if [ -z "$ANSIBLE_DIR" ]; then
     exit 100
 fi
 
-if [ -z "$SSH_KEYPAIR_FILE_CHKD" ]; then
+if [ -z "$SSH_KEYPAIR_FILE_DR_CHKD" ]; then
     echo "No KeyPair file param was found. Please check again"
     exit 100
 fi
 
-if [ -z "$HOSTS_IPS" ]; then
+if [ -z "$HOSTS_IPS_DR" ]; then
     echo "No Hosts IPs were received as input params"
     exit 100
 fi
 
-private_ips_values=$(echo $HOSTS_IPS | sed "s/\[/\ /g" | sed "s/\]/\ /g" | sed "s/\,/\ /g")
+private_ips_values=$(echo $HOSTS_IPS_DR | sed "s/\[/\ /g" | sed "s/\]/\ /g" | sed "s/\,/\ /g")
 eval "private_ips_array=($private_ips_values)"
 
 # ------------------------------------------------------------------
@@ -44,8 +44,9 @@ for instance_ip in "${private_ips_array[@]}"; do
     echo "      ansible_port: 22" >> $hostsFile
     echo "      ansible_user: ec2-user" >> $hostsFile
     echo "      ansible_connection: ssh" >> $hostsFile
-    echo "      ansible_ssh_private_key_file: $SSH_KEYPAIR_FILE_CHKD" >> $hostsFile
+    echo "      ansible_ssh_private_key_file: $SSH_KEYPAIR_FILE_DR_CHKD" >> $hostsFile
     echo "      ansible_ssh_common_args: \"-o StrictHostKeyChecking=no -o ServerAliveInterval=30 -o ControlMaster=auto -o ControlPersist=60s\"" >> $hostsFile
 done
 
 exit 0
+
