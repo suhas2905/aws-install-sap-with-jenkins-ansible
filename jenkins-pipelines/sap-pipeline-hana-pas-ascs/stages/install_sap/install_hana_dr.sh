@@ -3,7 +3,7 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 # SPDX-License-Identifier: MIT-0
 
-ansibleHanaDir="$PWD/ansible-playbooks/aws-sap-hana-dr"
+ansibleHanaDir="$PWD/ansible-playbooks/aws-sap-hana"
 export ANSIBLE_DIR=$ansibleHanaDir
 
 # ------------------------------------------------------------------
