@@ -3,8 +3,8 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 # SPDX-License-Identifier: MIT-0
 
-ansibleHanaDir="$PWD/ansible-playbooks/aws-sap-hana"
-export ANSIBLE_DIR=$ansibleHanaDir
+ansibleHanaDirdr="$PWD/ansible-playbooks/aws-sap-hana-dr"
+export ANSIBLE_DIR=$ansibleHanaDirdr
 
 # ------------------------------------------------------------------
 # Grab data from Terraform
@@ -44,9 +44,9 @@ if [ $? -ne 0 ]; then
     exit 104
 fi
 
-hostsFile="$ansibleHanaDir/hosts_runtime.yml"
+hostsFile="$ansibleHanaDirdr/hosts_runtime.yml"
 
-export VAR_FILE_FULL_PATH="$ansibleHanaDir/var_file.yaml"
+export VAR_FILE_FULL_PATH="$ansibleHanaDirdr/var_file.yaml"
 rm $VAR_FILE_FULL_PATH 2> /dev/null
 touch $VAR_FILE_FULL_PATH
 
@@ -77,7 +77,7 @@ echo "OVERLAY_IP_ROUTE_TABLE_ID: $hana_dr_overlay_route_table_id" >> $VAR_FILE_F
 ANSIBLE_HOST_KEY_CHECKING=False
 ANSIBLE_BECOME_EXE="sudo su -"
 
-ansible-playbook $ansibleHanaDir/install_hana.yml \
+ansible-playbook $ansibleHanaDirdr/install_hana.yml \
                     --inventory-file "$hostsFile" \
                     --extra-vars "@$VAR_FILE_FULL_PATH"
 
