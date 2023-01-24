@@ -7,13 +7,13 @@
   include_tasks: set_instance_hostname.yml
   when: GLOBAL_ENABLE_HA == false
 
-- name: Set instance hostname
-  include_tasks: set_instance_hostname_ha.yml
-  when: GLOBAL_ENABLE_HA == true
+#- name: Set instance hostname
+#  include_tasks: set_instance_hostname_ha.yml
+#  when: GLOBAL_ENABLE_HA == true
 
-- name: Add HA hosts to hostname map
-  include_tasks: add_ha_hostnames_to_map.yml
-  when: GLOBAL_ENABLE_HA == true
+#- name: Add HA hosts to hostname map
+#  include_tasks: add_ha_hostnames_to_map.yml
+#  when: GLOBAL_ENABLE_HA == true
 
 - name: Register hosts
   include_tasks: register_user_hosts.yml
