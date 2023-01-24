@@ -1,0 +1,12 @@
+---
+
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
+
+- name: sap-preconfigure
+  src: https://github.com/suhas2905/sap-preconfigure.git
+  version: master
+
+- name: sap-hana-preconfigure
+  src: https://github.com/suhas2905/sap-hana-preconfigure.git
+  version: master
