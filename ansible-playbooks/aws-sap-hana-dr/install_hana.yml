@@ -22,7 +22,7 @@
     - role: prepare-logs-folders
     - role: install-pkg-mgr-dependencies
     - role: install-aws-sap-data-provider
-    - role: set-hostname-dr
+    - role: set-hostname
 
 # Installation-specific roles
 - name: Set parameters and mount disks
