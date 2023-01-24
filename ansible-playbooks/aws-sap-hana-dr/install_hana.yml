@@ -8,7 +8,7 @@
   become: true
   hosts: all
   roles:
-    - role: check-inputs-dr
+    - role: check-inputs
       vars:
         input_variables_to_check: 
           - EC2_HOSTNAME
