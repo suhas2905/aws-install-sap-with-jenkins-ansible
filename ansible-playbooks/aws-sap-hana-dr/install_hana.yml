@@ -18,10 +18,10 @@
           - HANA_INSTANCE_NUMBER
           - S3_BUCKET_MEDIA_FILES
           - AWS_CLI_PROFILE
-    - role: common-os-tasks-dr
-    - role: prepare-logs-folders-dr
-    - role: install-pkg-mgr-dependencies-dr
-    - role: install-aws-sap-data-provider-dr
+    - role: common-os-tasks
+    - role: prepare-logs-folders
+    - role: install-pkg-mgr-dependencies
+    - role: install-aws-sap-data-provider
     - role: set-hostname-dr
 
 # Installation-specific roles
