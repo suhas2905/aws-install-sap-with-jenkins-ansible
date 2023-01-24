@@ -10,19 +10,21 @@
   roles:
     - role: check-inputs
       vars:
-        input_variables_to_check: 
+        input_variables_to_check:
           - EC2_HOSTNAME
           - PRIVATE_DNS_ZONE
           - MASTER_PASSWORD
           - HANA_SID
           - HANA_INSTANCE_NUMBER
           - S3_BUCKET_MEDIA_FILES
+          - ENABLE_HA
           - AWS_CLI_PROFILE
     - role: common-os-tasks
     - role: prepare-logs-folders
     - role: install-pkg-mgr-dependencies
     - role: install-aws-sap-data-provider
     - role: set-hostname
+
 
 # Installation-specific roles
 - name: Set parameters and mount disks
