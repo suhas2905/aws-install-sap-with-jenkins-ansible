@@ -9,3 +9,10 @@
     state: directory
     mode: '0755'
   loop: "{{ folders_to_create }}"
+  
+#- name: EFS direcroty
+#  file:
+#    path: "{{ item }}"
+#    state: directory
+#    mode: '0755'
+#  loop: "{{ efs_folders_to_create }}"
