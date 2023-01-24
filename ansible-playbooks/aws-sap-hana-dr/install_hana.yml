@@ -16,9 +16,7 @@
           - MASTER_PASSWORD
           - HANA_SID
           - HANA_INSTANCE_NUMBER
-          - EFS_ID
           - S3_BUCKET_MEDIA_FILES
-          - ENABLE_HA
           - AWS_CLI_PROFILE
     - role: common-os-tasks
     - role: prepare-logs-folders
