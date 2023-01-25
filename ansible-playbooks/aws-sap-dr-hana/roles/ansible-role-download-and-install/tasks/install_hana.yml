@@ -15,7 +15,7 @@
 
 - name: Set hostname var for non HA installation
   set_fact: THIS_HOSTNAME="{{ GLOBAL_INPUT_HOSTNAME }}"
-  when: GLOBAL_ENABLE_HA == false
+  #when: GLOBAL_ENABLE_HA == false
 
 - name: Run Hana Installation
   shell: 
