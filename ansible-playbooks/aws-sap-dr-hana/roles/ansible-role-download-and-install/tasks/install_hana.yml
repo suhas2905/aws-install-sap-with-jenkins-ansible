@@ -8,10 +8,10 @@
     path: "{{ hana_installation_file_path }}"
     mode: 0555
 
-- name: Fail if HA is enabled but no specific hostname was given to this instance by previous roles
-  fail:
-    msg: "This installation is running on HA mode and no HOSTNAME was found for this instance. Make sure you're calling the set-hostname role before this one or something equivalent"
-  when: GLOBAL_ENABLE_HA == true and THIS_HOSTNAME is undefined
+#- name: Fail if HA is enabled but no specific hostname was given to this instance by previous roles
+#  fail:
+#    msg: "This installation is running on HA mode and no HOSTNAME was found for this instance. Make sure you're calling the set-hostname role before this one or something equivalent"
+#  when: GLOBAL_ENABLE_HA == true and THIS_HOSTNAME is undefined
 
 - name: Set hostname var for non HA installation
   set_fact: THIS_HOSTNAME="{{ GLOBAL_INPUT_HOSTNAME }}"
