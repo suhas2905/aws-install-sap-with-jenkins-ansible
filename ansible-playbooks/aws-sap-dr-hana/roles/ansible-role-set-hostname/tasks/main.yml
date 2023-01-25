@@ -5,7 +5,7 @@
 
 - name: Set instance hostname
   include_tasks: set_instance_hostname.yml
-  when: GLOBAL_ENABLE_HA == false
+  #when: GLOBAL_ENABLE_HA == false
 
 #- name: Set instance hostname
 #  include_tasks: set_instance_hostname_ha.yml
