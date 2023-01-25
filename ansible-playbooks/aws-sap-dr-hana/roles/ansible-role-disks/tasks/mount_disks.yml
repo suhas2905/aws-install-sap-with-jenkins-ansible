@@ -21,8 +21,8 @@
 - name: Mount disks Hana Backup
   include_tasks: mount_disk_hana_backup.yml
 
-- name: Mount shared EFS SAPMNT
-  include_tasks: mount_disk_sapmnt.yml
+#- name: Mount shared EFS SAPMNT
+#  include_tasks: mount_disk_sapmnt.yml
 
 - name: Mount disks for Swap
   include_tasks: check_swap_enabled.yml
