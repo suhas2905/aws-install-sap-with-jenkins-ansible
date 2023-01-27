@@ -32,6 +32,6 @@ GLOBAL_OVERLAY_IP: "{{ OVERLAY_IP }}"
 GLOBAL_OVERLAY_IP_ROUTE_TABLE_ID: "{{ OVERLAY_IP_ROUTE_TABLE_ID }}"
 
 # Variables shared between roles
-GLOBAL_LOGS_AND_FOLDERS_ROLE_NAME: prepare-logs-folders
+GLOBAL_LOGS_AND_FOLDERS_ROLE_NAME: ansible-role-prepare-logs-folders
 
 sap_domain: "{{ GLOBAL_INPUT_DNS_ZONE }}"
