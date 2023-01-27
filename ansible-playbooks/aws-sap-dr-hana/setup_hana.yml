@@ -8,7 +8,7 @@
   become: true
   hosts: all
   roles:
-    - role: check-inputs
+    - role: ansible-check-inputs
       vars:
         input_variables_to_check:
           - EC2_HOSTNAME
@@ -18,10 +18,10 @@
           - HANA_INSTANCE_NUMBER
           - S3_BUCKET_MEDIA_FILES
           - AWS_CLI_PROFILE
-    - role: common-os-tasks
-    - role: prepare-logs-folders
-    - role: install-pkg-mgr-dependencies
-    - role: install-aws-sap-data-provider
+    - role: ansible-common-os-tasks
+    - role: ansible-prepare-logs-folders
+    - role: ansible-install-pkg-mgr-dependencies
+    - role: ansible-install-aws-sap-data-provider
     - role: ansible-role-set-hostname
     
 # Installation-specific roles
