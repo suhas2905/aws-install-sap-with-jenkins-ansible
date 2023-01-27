@@ -88,6 +88,7 @@ pipeline {
                     env.ASCS_INSTANCES_NAME_CHKD = "$EC2_INSTANCES_NAME_PREFIX_CHKD"+"-ascs"
                     env.ERS_INSTANCES_NAME_CHKD = "$EC2_INSTANCES_NAME_PREFIX_CHKD"+"-ers"
                     env.HANA_INSTANCES_NAME_CHKD = "$EC2_INSTANCES_NAME_PREFIX_CHKD"+"-hana"
+                    env.HANA_INSTANCES_NAME_DR_CHKD = "$EC2_INSTANCES_NAME_PREFIX_CHKD"+"-hana3"
                     env.HANA_INSTANCE_TYPE_CHKD = sh(script: GLOBAL_VARS_PATH+'/check_EC2_INSTANCE_TYPE_HANA.sh', returnStdout: true).trim()
                     env.ASCS_INSTANCE_TYPE_CHKD = sh(script: GLOBAL_VARS_PATH+'/check_EC2_INSTANCE_TYPE_ASCS.sh', returnStdout: true).trim()
                     env.ERS_INSTANCE_TYPE_CHKD = sh(script: GLOBAL_VARS_PATH+'/check_EC2_INSTANCE_TYPE_ERS.sh', returnStdout: true).trim()
