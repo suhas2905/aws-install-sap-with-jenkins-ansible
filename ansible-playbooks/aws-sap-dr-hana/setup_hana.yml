@@ -11,7 +11,7 @@
     - role: ansible-role-check-inputs
       vars:
         input_variables_to_check:
-          - EC2_HOSTNAME
+          - EC2_HOSTNAME_DR
           - PRIVATE_DNS_ZONE
           - MASTER_PASSWORD
           - HANA_SID
